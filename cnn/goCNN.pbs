@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH --job-name=w_disl
+#format could be dd-hh:mm:ss, hh:mm:ss, mm:ss, or mm
+#SBATCH --time=7-0:0:0
+#SBATCH --qos=long
+#SBATCH --nodes=1
+#SBATCH --mem=40000
+#SBATCH -p mc --gres gpu:2
+#SBATCH --mail-type=END,FAIL 
+#SBATCH --mail-user=xzhang11@stanford.edu
+
+export PATH="/home/xzhang11/miniconda3_sherlock2/bin:$PATH"
+module load cuda/8.0
+
+sleep 1 
+python train_cnn.py
+
+#python test_cnn.py
+wait
